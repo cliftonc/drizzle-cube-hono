@@ -7,19 +7,16 @@ import { Hono } from 'hono'
 import { logger } from 'hono/logger'
 import { cors } from 'hono/cors'
 import { drizzle } from 'drizzle-orm/postgres-js'
-import { drizzle as drizzleNeon } from 'drizzle-orm/neon-http'
 import postgres from 'postgres'
-import { neon } from '@neondatabase/serverless'
 import { createCubeApp } from 'drizzle-cube/adapters/hono'
 import type { SecurityContext, DrizzleDatabase } from 'drizzle-cube/server'
 import { schema } from './schema'
 import { allCubes } from './cubes'
-import type { Schema } from './schema'
 import analyticsApp from './src/analytics-routes'
 import aiApp from './src/ai-routes'
 
 interface Variables {
-  db: DrizzleDatabase<Schema>
+  db: DrizzleDatabase
 }
 
 // Default database connection for Node.js environment
