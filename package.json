@@ -22,7 +22,8 @@
     "db:studio": "drizzle-kit studio",
     "setup": "npm run docker:up && sleep 5 && npm run db:generate && npm run db:migrate && npm run db:seed",
     "setup:neon": "npm run db:generate && npm run db:migrate && npm run db:seed",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "ci:all": "npm ci && cd client && npm ci"
   },
   "dependencies": {
     "@hono/node-server": "^1.8.0",
@@ -36,6 +37,8 @@
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
     "concurrently": "^8.2.0",
     "drizzle-kit": "^0.31.4",
     "tsx": "^4.20.4",
