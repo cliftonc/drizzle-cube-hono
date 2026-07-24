@@ -25,7 +25,7 @@
     "ci:all": "npm ci"
   },
   "dependencies": {
-    "@hono/node-server": "^1.8.0",
+    "@hono/node-server": "^2.0.0",
     "@neondatabase/serverless": "^1.0.1",
     "@nivo/heatmap": "^0.99.0",
     "d3": "^7.9.0",
