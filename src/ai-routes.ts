@@ -7,7 +7,7 @@
 import { Hono } from 'hono'
 import { eq } from 'drizzle-orm'
 import type { DrizzleDatabase } from 'drizzle-cube/server'
-import { SemanticLayerCompiler } from 'drizzle-cube/server'
+import { SemanticLayerCompiler, SINGLE_TENANT_CONTEXT } from 'drizzle-cube/server'
 import { settings, schema } from '../schema'
 import { allCubes } from '../cubes'
 
@@ -188,7 +188,10 @@ function formatCubeSchemaForAI(db: DrizzleDatabase): string {
       semanticLayer.registerCube(cube)
     })
     
-    const metadata = semanticLayer.getMetadata()
+    // getMetadata requires a security context in 0.8, because cube definitions
+    // can differ per tenant. This throwaway compiler exists only to read schema
+    // for an AI prompt and has no tenancy, so it says so explicitly.
+    const metadata = semanticLayer.getMetadata(SINGLE_TENANT_CONTEXT)
     
     // Format the metadata for AI consumption
     const cubes: Record<string, any> = {}
